@@ -4,10 +4,12 @@
 <ion-content class="padding">
 	<p>I am Page 2!</p>
 	<ion-list>
-		<ion-item class="item-avatar" ng-repeat="item in users">
+		<ion-item class="item-avatar" ng-repeat="item in items">
 			<img src="{{item.user.picture.thumbnail}}" alt="">
 			<h2>{{item.user.name.first}} {{item.user.name.last}}</h2>
 			<p>{{item.user.location.city}} </p>
 		</ion-item>
 	</ion-list>
+
+	<ion-infinite-scroll on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
 </ion-content>

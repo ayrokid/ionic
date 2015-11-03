@@ -19,10 +19,20 @@ angular.module('ionicApp', ['ionic'])
 })
 
 .factory('userService', function($http) {
+  var BASE_URL = "https://randomuser.me/api/";
+  var items = [];
+  
   return {
-    getUsers: function(){
-      return $http.get('https://randomuser.me/api/?results=10').then(function(response){
-        return response.data.results;
+    GetFeed: function(){
+      return $http.get(BASE_URL+'?results=10').then(function(response){
+        items = response.data.results;
+        return items;
+      });
+    },
+    GetNewUsers: function(){
+      return $http.get(BASE_URL+'?results=10').then(function(response){
+        items = response.data.results;
+        return items;
       });
     }
   }
@@ -32,10 +42,21 @@ angular.module('ionicApp', ['ionic'])
   console.log('Main Controller says: Hello World');
 })
 
-.controller('Page2Ctrl', function($scope, userService){
-  userService.getUsers().then(function(users) {
-      $scope.users = users;
+.controller('Page2Ctrl', function($scope, $timeout, userService){
+  $scope.items = [];
+
+  userService.GetFeed().then(function(items){
+    $scope.items = items;
   });
+
+  $scope.loadMore = function() {
+    userService.GetNewUsers().then(function(items){
+      $scope.items = $scope.items.concat(items);
+
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    });
+  };
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
