@@ -1,0 +1,16 @@
+<ion-view view-title="">
+  <ion-content>
+  	<ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="showData()">
+          </ion-refresher>
+    <ion-list>
+      <ion-item class="item-remove-animate item item-thumbnail-left list-item" ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+         <img ng-src="{{playlist.image}}" >
+        <span class="item-channel">{{playlist.channel}}</span>
+	    <span class="row responsive-sm item-text-wrap">{{playlist.title}}</span>
+	    <span class="item-publish">{{playlist.publish}}</span>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
