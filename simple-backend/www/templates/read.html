@@ -1,0 +1,12 @@
+<ion-header-bar class="bar-positive">
+        <button class="button button-icon icon ion-ios7-arrow-left" ng-click="back();">Back</button>
+        <h1 class="title">News Detail</h1>
+</ion-header-bar>
+<ion-content class="padding">
+    <ul class="list">
+      <a class="item item-thumbnail-left" ng-repeat="item in items" href="#/read/{{item.id}}" >
+        <img ng-src="{{item.image}}" alt="">
+        <span class="row responsive-sm item-text-wrap">{{item.title}}</span>
+      </a>
+    </ul>
+</ion-content>

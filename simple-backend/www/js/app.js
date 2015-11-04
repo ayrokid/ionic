@@ -18,20 +18,30 @@ angular.module('ionicApp', ['ionic'])
   });
 })
 
-.factory('userService', function($http) {
-  var BASE_URL = "https://randomuser.me/api/";
+.factory('userService', function($http, $window) {
+  var BASE_URL = "http://silvanix.com/api/news";
   var items = [];
   
   return {
     GetFeed: function(){
-      return $http.get(BASE_URL+'?results=10').then(function(response){
+      return $http.get(BASE_URL+'/1').then(function(response){
         items = response.data.results;
+        $window.localStorage['news'] = JSON.stringify(items);
         return items;
       });
     },
-    GetNewUsers: function(){
-      return $http.get(BASE_URL+'?results=10').then(function(response){
+    GetNewUsers: function(row){
+      //console.log(row);
+      return $http.get(BASE_URL+'/'+row).then(function(response){
         items = response.data.results;
+        
+        return items;
+      });
+    },
+    GetId: function(newsId) {
+      return $http.get('').then(function(response){
+        items = JSON.parse($window.localStorage['news'] || '{}');
+        console.log(items);
         return items;
       });
     }
@@ -42,19 +52,36 @@ angular.module('ionicApp', ['ionic'])
   console.log('Main Controller says: Hello World');
 })
 
-.controller('Page2Ctrl', function($scope, $timeout, userService){
+.controller('Page2Ctrl', function($scope, $timeout, $window,userService){
   $scope.items = [];
+  $scope.limit = 1;
 
   userService.GetFeed().then(function(items){
     $scope.items = items;
   });
 
   $scope.loadMore = function() {
-    userService.GetNewUsers().then(function(items){
+    userService.GetNewUsers($scope.limit).then(function(items){
       $scope.items = $scope.items.concat(items);
 
       $scope.$broadcast('scroll.infiniteScrollComplete');
+
+      $window.localStorage['news'] = JSON.stringify($scope.items);
+      $scope.limit += 1;
     });
+  };
+
+})
+
+.controller('ReadCtrl', function($scope, $stateParams, $state, $window, userService){
+  $scope.items = JSON.parse($window.localStorage['news'] || '{}');
+  $scope.news_id = $stateParams.newsId;
+  /*userService.GetId($stateParams.newsId).then(function(items){
+    $scope.items = items;
+  });
+*/
+  $scope.back = function (){
+        $state.go('page2');
   };
 
 })
@@ -70,6 +97,11 @@ angular.module('ionicApp', ['ionic'])
         url: '/page2',
         templateUrl: 'templates/page2.html',
         controller: 'Page2Ctrl'
+    })
+    .state('read', {
+        url: '/read/:newId',
+        templateUrl: 'templates/read.html',
+        controller: 'ReadCtrl'
     });
 
     $urlRouterProvider.otherwise('/main');
