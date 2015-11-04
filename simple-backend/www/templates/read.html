@@ -1,12 +1,13 @@
-<ion-header-bar class="bar-positive">
+<ion-header-bar class="bar bar-header bar-light">
         <button class="button button-icon icon ion-ios7-arrow-left" ng-click="back();">Back</button>
-        <h1 class="title">News Detail</h1>
+        <h1 class="title"><img class="title-image" src="../img/logo.png" /></h1>
 </ion-header-bar>
-<ion-content class="padding">
-    <ul class="list">
-      <a class="item item-thumbnail-left" ng-repeat="item in items" href="#/read/{{item.id}}" >
-        <img ng-src="{{item.image}}" alt="">
-        <span class="row responsive-sm item-text-wrap">{{item.title}}</span>
-      </a>
-    </ul>
-</ion-content>
+<ion-view ng-repeat="item in items" view-title="{{item.title}}">
+  <ion-content class="padding" style="top:50px;">
+    <img ng-src="{{item.image}}" style="width: 100%;">
+    <span class="item-channel">{{item.channel}}</span>
+    <span class="item-publish">{{item.publish}}</span>
+	<h2 class="row responsive-sm item-text-wrap item-title">{{item.title}}</h2>
+    <div class="row responsive-sm item-text-wrap item-content" ng-bind-html="item.content"></div>
+  </ion-content>
+</ion-view>
