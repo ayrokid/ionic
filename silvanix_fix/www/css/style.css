@@ -26,7 +26,7 @@
 .item-title {
 	color: #3E3939;
 	margin-top: 5px;
-	border-bottom: 1px solid #519FF2;
+	border-bottom: 0px solid #519FF2;
 }
 
 .item-publish {
@@ -37,4 +37,5 @@
 
 .item-content {
 	color: #332F2F;
+	width: 100%;
 }

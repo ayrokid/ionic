@@ -1,0 +1,11 @@
+<ion-view view-title="">
+  <ion-content class="padding" style="top:50px;">
+    <img ng-src="{{detail.image}}" style="width: 100%;">
+    <span class="item-channel">{{detail.channel}}</span>
+    <span class="item-publish">{{detail.publish}}</span>
+	<h2 class="row responsive-sm item-text-wrap item-title">{{detail.title}}</h2>
+	<div class="item item-body item-content">
+    	<span data-ng-bind-html="detail.content"></span>
+    </div>
+  </ion-content>
+</ion-view>

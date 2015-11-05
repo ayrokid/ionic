@@ -1,6 +1,6 @@
-<ion-side-menus enable-menu-with-back-views="true">
+<ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-stable">
+    <ion-nav-bar class="bar-light">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
@@ -9,6 +9,9 @@
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
+    <ion-header-bar class="bar-light" align-title="center">
+        <h1 class="title"><img class="title-image" src="img/logo.png" /></h1>
+    </ion-header-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
@@ -24,12 +27,13 @@
         <ion-item menu-close href="#/app/search">
           Search
         </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
-        </ion-item>
         <ion-item menu-close href="#/app/playlists">
-          Playlists
+          Kanal Detil.com
         </ion-item>
+        <ion-item menu-close href="#/app/browse">
+          kanal Okezone.com
+        </ion-item>
+        
       </ion-list>
     </ion-content>
   </ion-side-menu>

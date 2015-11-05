@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, newsServices) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -41,11 +41,12 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope, newsServices) {
+.controller('PlaylistsCtrl', function($scope, $window, newsServices) {
 
   $scope.showData = function() {
       newsServices.getAll().success(function(data) {
             $scope.playlists = data.results;
+            $window.localStorage['playlists'] = JSON.stringify(data.results);
         }).finally(function() {
             $scope.$broadcast('scroll.refreshComplete');
         });
@@ -67,5 +68,15 @@ angular.module('starter.controllers', [])
   */
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('PlaylistCtrl', function($scope, $stateParams, $window, newsServices) {
+    $scope.detail = null;
+    var playlists = JSON.parse($window.localStorage['playlists'] || '{}');
+    for (var i = 0; i < playlists.length; i++) {
+        if (playlists[i].id === $stateParams.newsId) {
+          $scope.detail = playlists[i];
+        }
+    }
+
+    //console.log($scope.detail);
+
 });
