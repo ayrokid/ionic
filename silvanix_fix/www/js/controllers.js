@@ -44,7 +44,7 @@ angular.module('starter.controllers', [])
 .controller('PlaylistsCtrl', function($scope, $window, newsServices) {
 
   $scope.showData = function() {
-      newsServices.getAll().success(function(data) {
+      newsServices.getAll(1).success(function(data) {
             $scope.playlists = data.results;
             $window.localStorage['playlists'] = JSON.stringify(data.results);
         }).finally(function() {
@@ -56,19 +56,56 @@ angular.module('starter.controllers', [])
     $scope.reload = function (){
         $state.go('app.playlists');
     };
-/*
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-  */
+
+    /*$scope.playlists = [];
+    $scope.loadMore = function() {
+        newsServices.getAll(2).success(function(items) {
+          useItems(items);
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        });
+    };
+
+    $scope.$on('$stateChangeSuccess', function() {
+      $scope.loadMore();
+    });*/
+})
+
+.controller('OkezoneCtrl', function($scope, $window, newsServices) {
+
+  $scope.showData = function() {
+      newsServices.getOkezone(1).success(function(data) {
+            $scope.playlists = data.results;
+            $window.localStorage['playlists'] = JSON.stringify(data.results);
+        }).finally(function() {
+            $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
+    $scope.showData();
+    
+    $scope.reload = function (){
+        $state.go('app.playlists');
+    };
+})
+
+.controller('DetikCtrl', function($scope, $window, newsServices) {
+
+  $scope.showData = function() {
+      newsServices.getDetik(1).success(function(data) {
+            $scope.playlists = data.results;
+            $window.localStorage['playlists'] = JSON.stringify(data.results);
+        }).finally(function() {
+            $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
+    $scope.showData();
+    
+    $scope.reload = function (){
+        $state.go('app.playlists');
+    };
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams, $window, newsServices) {
+
     $scope.detail = null;
     var playlists = JSON.parse($window.localStorage['playlists'] || '{}');
     for (var i = 0; i < playlists.length; i++) {
@@ -76,7 +113,5 @@ angular.module('starter.controllers', [])
           $scope.detail = playlists[i];
         }
     }
-
-    //console.log($scope.detail);
 
 });

@@ -3,11 +3,17 @@ angular.module('starter.services', [])
 .factory('newsServices', function($http) {
     var baseUrl = 'http://silvanix.com/api/';
     return {
-        getAll: function() {
-            return $http.get(baseUrl+'news/1');
+        getAll: function(page) {
+            return $http.get(baseUrl+'news/'+page);
         },
-        getId: function (temanId){
-            return $http.get(baseUrl+'select_id.php?id='+temanId); 
+        getDetik: function(page) {
+            return $http.get(baseUrl+'detik/'+page);
+        },
+        getOkezone: function(page) {
+            return $http.get(baseUrl+'okezone/'+page);
+        },
+        getId: function (newsId){
+            return $http.get(baseUrl+'news-detail/'+newsId);
         },
         create: function (datateman){
             return $http.post(baseUrl+'insert.php',datateman,{

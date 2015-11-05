@@ -41,14 +41,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.okezone', {
+      url: '/okezone',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/playlists.html',
+          controller: 'OkezoneCtrl'
         }
       }
     })
+
+  .state('app.detik', {
+      url: '/detik',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/playlists.html',
+          controller: 'DetikCtrl'
+        }
+      }
+    })
+
     .state('app.playlists', {
       url: '/playlists',
       views: {

@@ -14,8 +14,8 @@
 }
 
 .title-image {
-    margin-top: 8px;
-    height: 30px;
+    margin-top: 1px;
+    height: 40px;
 }
 
 .item-channel {
@@ -37,5 +37,51 @@
 
 .item-content {
 	color: #332F2F;
+<<<<<<< HEAD:silvanix_fix/www/css/style.css
 	width: 100%;
 }
+=======
+}
+
+/* custome side menu */
+body {
+  cursor: url("http://ionicframework.com/img/finger.png"), auto;
+}
+
+.dark {
+  background-color: blue !important;
+  color: #ffffff;
+}
+.dark .item {
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid;
+  border-bottom: 2px solid;
+  border-color: #0000cc;
+  padding: 20px;
+  color: #F0F1F1;
+  max-height: none;
+}
+.dark .item:last-child {
+  border-bottom: 1px solid #333333;
+}
+.dark .item.current {
+  background-color: #262727 !important;
+  border-top: 1px solid #464646 !important;
+  border-bottom: 2px solid #333333 !important;
+}
+.dark .item.current p, .dark .item.current h3 {
+  opacity: .7;
+}
+.dark h2,
+.dark h3,
+.dark p,
+.dark a {
+  color: #F0F1F1;
+}
+
+.dark-head {
+  text-decoration: none;
+}
+/* end customer side menu */
+>>>>>>> f13ebde35ceccd167ad58b0127d998f0c8646cfd:silvanix/www/css/style.css
