@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, LoginService, $ionicPopup, $state) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -19,6 +19,10 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
 
+  $scope.refresh = function(){
+    $state.go('app.playlists');
+  }
+
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
@@ -32,12 +36,20 @@ angular.module('starter.controllers', [])
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     console.log('Doing login', $scope.loginData);
+    LoginService.loginUser($scope.loginData.username, $scope.loginData.password).success(function(data) {
+      // Simulate a login delay. Remove this and replace with your login
+      // code if using a login system
+      $timeout(function() {
+        $scope.closeLogin();
+      }, 1000);
+      $scope.state.go('app.playlists');
+    }).error(function(data) {
+      var alertPopup = $ionicPopup.alert({
+        title: 'Login failed!',
+        template: 'Please check your credentials!'
+      });
+    });
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
   };
 })
 
@@ -52,7 +64,7 @@ angular.module('starter.controllers', [])
         });
     };
     $scope.showData();
-    
+
     $scope.reload = function (){
         $state.go('app.playlists');
     };
@@ -102,6 +114,192 @@ angular.module('starter.controllers', [])
     $scope.reload = function (){
         $state.go('app.playlists');
     };
+})
+
+.controller('dashCtrl', function($scope) {
+ 
+
+    $scope.chartPie = {
+      options: {
+        chart: {
+          type: 'pie',
+          // marginTop: '10px'
+        },
+        colors: ['#058dc7', '#50b432'],
+
+      },
+      series: [{
+        data: [
+          ['Download', 100],
+          ['Upload', 500]
+        ],
+        name: 'InternetUsage MB',
+        //data:[50,40],
+        dataLabels: {
+          rotation: 270,
+          enabled: false,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} MB'
+        }
+      }],
+      title: {
+        text: 'Pie Chart'
+      },
+       tooltip: {
+            valueDecimals: 2,
+            valueSuffix: ' USD'
+        },
+
+      credits: {
+        enabled: false
+      },
+
+      loading: false
+    }
+
+$scope.chartarea = {
+  options: {
+          chart: {
+            type: 'area',
+            inverted: false,
+            zoomType: 'xy',
+             
+             height: 250,
+             
+           
+
+          },
+          plotOptions: {
+            
+          series: {
+              cursor: 'pointer',
+              column :{
+               size: '30%',
+              },
+              
+          }
+        },
+          colors: ['#058dc7', '#50b432']
+        },
+
+        xAxis: {
+           
+            
+            categories: ['10 jan','11 jan','12 jan','13 jan','14 jan','15 jan'],
+            title: {
+                text: ''
+            },
+            labels: {
+                rotation: -90,
+                style: {
+                    fontSize: '12px',
+            }
+            }
+
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Bandthwidth (MB)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' '
+        },
+        
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            
+            floating: false,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+               text: 'Internet Usage',
+               style: {
+                //color: '#FF00FF',
+                fontSize: '12px'
+            },
+        },
+
+        series: [{
+            name: 'Download',
+            data: [50,60,70,50,60,70],
+        }, {
+            name: 'Upload',
+            data: [40,30,60,50,60,70],
+        }, ],
+        loading : false
+
+    }
+
+
+
+    $scope.chartDonut = {
+      options: {
+         plotOptions: {
+
+                pie: {              
+                    
+                    dataLabels: {
+                        enabled: false,
+                      
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white',
+                            textShadow: '0px 1px 2px black',
+
+                        }
+
+                    },
+                    startAngle: -90,
+                    endAngle: 90,
+                    center: ['50%', '75%']
+                }
+            },
+             colors: ['#058dc7', '#50b432'],
+
+    },
+    
+      series: [{
+        type: 'pie',
+        innerSize: '50%',
+        data: [
+          ['Download', 100],
+          ['Upload', 500]
+        ],
+        name: 'InternetUsage MB',
+        //data:[50,40],
+        dataLabels: {
+          rotation: 270,
+          enabled: false,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} MB'
+
+        }
+      }],
+       title: {
+            text: '',
+            align: 'center',
+            verticalAlign: 'middle',
+            y: -60
+        },
+      
+
+      credits: {
+        enabled: false
+      },
+
+      loading: false
+    }
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams, $window, newsServices) {

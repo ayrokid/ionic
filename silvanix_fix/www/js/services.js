@@ -33,5 +33,30 @@ angular.module('starter.services', [])
             return $http.get(baseUrl+'delete.php?id='+id);
         }
     };
-    
+
+})
+
+.service('LoginService', function($q){
+  return {
+    loginUser: function(name, pass) {
+      var deffered = $q.defer();
+      var promise  = deffered.promise;
+
+      if (name == 'user' && pass == 'secret') {
+        deffered.resolve("Welcome " + name + '!');
+      } else {
+        deffered.reject('Wrong credentials.');
+      }
+      promise.success = function(fn) {
+        promise.then(fn);
+        return promise;
+      }
+      promise.error = function(fn) {
+        promise.then(null, fn);
+        return promise;
+      }
+
+      return promise;
+    }
+  }
 });
