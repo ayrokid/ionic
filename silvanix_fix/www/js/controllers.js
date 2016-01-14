@@ -39,10 +39,7 @@ angular.module('starter.controllers', [])
     LoginService.loginUser($scope.loginData.username, $scope.loginData.password).success(function(data) {
       // Simulate a login delay. Remove this and replace with your login
       // code if using a login system
-      $timeout(function() {
-        $scope.closeLogin();
-      }, 1000);
-      $scope.state.go('app.playlists');
+      $state.go('app.sales');
     }).error(function(data) {
       var alertPopup = $ionicPopup.alert({
         title: 'Login failed!',
@@ -51,6 +48,10 @@ angular.module('starter.controllers', [])
     });
 
   };
+})
+
+.controller('welcomeController', function($scope, $window, newsServices) {
+
 })
 
 .controller('PlaylistsCtrl', function($scope, $window, newsServices) {
@@ -113,6 +114,64 @@ angular.module('starter.controllers', [])
     
     $scope.reload = function (){
         $state.go('app.playlists');
+    };
+})
+
+.controller('salesCtrl', function($scope, $window, newsServices) {
+  $scope.chartPie = {
+        options: {
+        chart: {
+          type: 'column',
+          // marginTop: '10px'
+        },
+        colors: ['#058dc7', '#50b432', '#F4AE11'],
+
+      },
+        title: {
+            text: 'Monthly Average Rainfall'
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: {
+            categories: [
+                'Jan'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Rainfall (mm)'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Tokyo',
+            data: [49.9]
+
+        }, {
+            name: 'New York',
+            data: [83.6]
+
+        }, {
+            name: 'London',
+            data: [48.9]
+
+        }]
     };
 })
 
