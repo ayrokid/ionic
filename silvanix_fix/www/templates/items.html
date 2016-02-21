@@ -1,0 +1,13 @@
+<ion-view view-title="Reporting Sales">
+    <ion-content class="padding">
+    <h4 class="border-top">
+    <i class="icon ion-stats-bars"></i>
+    <button class="button button-icon ion-plus" ng-click="addItem()">
+    </h4>
+    <ion-list>
+    <ion-item ng-repeat="item in items">
+        {{item.name}}
+    </ion-item>
+    </ion-list>
+    </ion-content>
+</ion-view>

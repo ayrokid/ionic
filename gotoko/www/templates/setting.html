@@ -1,0 +1,51 @@
+<ion-view view-title="Edit Budget Toko">
+    <ion-content class="padding">
+        <h4 class="border-top"><i class="icon ion-edit"></i> Budget</h4>
+        <form ng-submit="save()" class="">
+            <div class="list">
+                <input type="hidden" ng-model="budget.year" >
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Biaya Operasional</span>
+                    <input type="text" ng-keyup="currency" ng-model="budget.saldo_operasional" placeholder="Biaya Operasional" maxlength="50" >
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Biaya Listrik</span>
+                    <input type="text" ng-keyup="currency" ng-model="budget.saldo_listrik" placeholder="Biaya Listrik" maxlength="50" >
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Biaya PDAM</span>
+                    <input type="text" ng-keyup="currency" ng-model="budget.saldo_pdam" placeholder="Biaya PDAM" maxlength="50" >
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Biaya Telepon</span>
+                    <input type="text" ng-keyup="currency" ng-model="budget.saldo_telepon" placeholder="Biaya Telepon" maxlength="50" >
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Biaya Kesehatan</span>
+                    <input type="text" ng-keyup="currency" ng-model="budget.saldo_kesehatan" placeholder="Biaya Kesehatan" maxlength="50" >
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Biaya Transportasi</span>
+                    <input type="text" ng-keyup="currency" ng-model="budget.saldo_transportasi" placeholder="Biaya Transportasi" maxlength="50" >
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Biaya Hiburan</span>
+                    <input type="text" ng-keyup="currency" ng-model="budget.saldo_hiburan" placeholder="Biaya Hiburan" maxlength="50" >
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Biaya Konsumsi</span>
+                    <input type="text" ng-keyup="currency" ng-model="budget.saldo_konsumsi" placeholder="Biaya Konsumsi" maxlength="50" >
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Biaya Pulsa</span>
+                    <input type="text" ng-keyup="currency" ng-model="budget.saldo_pulsa" placeholder="Biaya Pulsa" maxlength="50" >
+                </label>
+                <label class="item item-input item-floating-label">
+                    <span class="input-label">Biaya Lain-Lain</span>
+                    <input type="text" ng-keyup="currency" ng-model="budget.saldo_lain" placeholder="Biaya Lain-Lain" maxlength="50" >
+                </label>
+            </div>
+            <button class="button button-block button-positive icon ion-checkmark-circled" type="submit"> Save</button>
+        </form>
+    </ion-content>
+</ion-view>

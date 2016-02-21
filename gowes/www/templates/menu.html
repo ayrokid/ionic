@@ -1,0 +1,56 @@
+
+<ion-side-menus enable-menu-with-back-views="false">
+    <ion-side-menu-content>
+        <ion-nav-bar class="bar-assertive">
+            <!-- <ion-nav-title align-title="center">
+            <h1 class="title"><img class="title-image" src="img/okezone.png" /></h1>
+            </ion-nav-title> -->
+            <ion-nav-back-button class="no-text">
+            </ion-nav-back-button>
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+            </ion-nav-buttons>
+<!--             <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-home" ng-click="refresh()" ></button>
+</ion-nav-buttons> -->
+        </ion-nav-bar>
+
+        <!-- <button id="fab" name="fabContent" class="button button-positive button-fab button-fab-bottom-right" ng-click="refresh()" >
+            <i class="icon ion-refresh"></i>
+        </button> -->
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left">
+        <ion-header-bar class="expanded">
+            <img src="img/mlogo.png" class="avatar motion spin fade">
+            <div class="menu-bottom">
+                GOWES APPS
+            </div>
+        </ion-header-bar>
+        <ion-content class="stable-bg has-expanded-header">
+            <ion-list>
+                <ion-item nav-clear menu-close href="#/app/playlists">
+                  Home
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/charts">
+                  Purchase
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/sales">
+                  Sales
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/charts">
+                  Budget
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/charts">
+                  Settings
+                </ion-item>
+                <ion-item nav-clear menu-close href="#/app/item">
+                  Items
+                </ion-item>
+                <ion-item nav-clear menu-close ng-click="logout()">
+                  Logout
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

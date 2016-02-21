@@ -59,4 +59,8 @@ angular.module('starter.services', [])
       return promise;
     }
   }
-});
+})
+.factory("Items", function($firebaseArray) {
+  var itemsRef = new Firebase("https://silvanix.firebaseio.com/items");
+  return $firebaseArray(itemsRef);
+})

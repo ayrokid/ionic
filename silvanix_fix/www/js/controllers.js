@@ -54,6 +54,19 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('ItemCtrl', function($scope, Items) {
+  $scope.items = Items;
+
+  $scope.addItem = function() {
+    var name = prompt("What do you need to buy?");
+    if(name) {
+      $scope.items.$add({
+        "name": name
+      });
+    }
+  };
+})
+
 .controller('PlaylistsCtrl', function($scope, $window, newsServices) {
 
   $scope.showData = function() {
@@ -94,7 +107,7 @@ angular.module('starter.controllers', [])
         });
     };
     $scope.showData();
-    
+
     $scope.reload = function (){
         $state.go('app.playlists');
     };
@@ -111,7 +124,7 @@ angular.module('starter.controllers', [])
         });
     };
     $scope.showData();
-    
+
     $scope.reload = function (){
         $state.go('app.playlists');
     };
@@ -176,7 +189,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('dashCtrl', function($scope) {
- 
+
 
     $scope.chartPie = {
       options: {
@@ -221,28 +234,28 @@ $scope.chartarea = {
             type: 'area',
             inverted: false,
             zoomType: 'xy',
-             
+
              height: 250,
-             
-           
+
+
 
           },
           plotOptions: {
-            
+
           series: {
               cursor: 'pointer',
               column :{
                size: '30%',
               },
-              
+
           }
         },
           colors: ['#058dc7', '#50b432']
         },
 
         xAxis: {
-           
-            
+
+
             categories: ['10 jan','11 jan','12 jan','13 jan','14 jan','15 jan'],
             title: {
                 text: ''
@@ -268,12 +281,12 @@ $scope.chartarea = {
         tooltip: {
             valueSuffix: ' '
         },
-        
+
         legend: {
             layout: 'vertical',
             align: 'right',
             verticalAlign: 'top',
-            
+
             floating: false,
             borderWidth: 1,
             backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
@@ -307,11 +320,11 @@ $scope.chartarea = {
       options: {
          plotOptions: {
 
-                pie: {              
-                    
+                pie: {
+
                     dataLabels: {
                         enabled: false,
-                      
+
                         style: {
                             fontWeight: 'bold',
                             color: 'white',
@@ -328,7 +341,7 @@ $scope.chartarea = {
              colors: ['#058dc7', '#50b432'],
 
     },
-    
+
       series: [{
         type: 'pie',
         innerSize: '50%',
@@ -351,7 +364,7 @@ $scope.chartarea = {
             verticalAlign: 'middle',
             y: -60
         },
-      
+
 
       credits: {
         enabled: false

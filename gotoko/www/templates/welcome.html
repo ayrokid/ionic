@@ -1,0 +1,26 @@
+<ion-view cache-view="false" hide-nav-bar="true">
+
+    <ion-content>
+    <div class="hero no-header flat">
+        <div class="content">
+            <div class="app-icon"></div>
+            <h1><strong>Go</strong>TOKO</h1>
+        </div>
+    </div>
+
+    <form ng-submit="doLogin()" class="padding">
+        <div class="list">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Email</span>
+                <input type="email" ng-model="loginData.email" placeholder="user@domain.com" maxlength="50" >
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Password</span>
+                <input type="password" ng-model="loginData.password" placeholder="Password" >
+            </label>
+        </div>
+        <button class="button button-block button-positive icon ion-log-in" type="submit"> Log in</button>
+    </form>
+    </ion-content>
+
+</ion-view>

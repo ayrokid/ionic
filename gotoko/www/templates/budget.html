@@ -1,0 +1,28 @@
+<ion-view view-title="Budget Toko">
+    <ion-content class="padding">
+        <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="refresh()">
+        </ion-refresher>
+            <i class="icon ion-calendar"></i> {{items.month}} {{items.year}}
+            <div class="border-top" ng-repeat="data in items.data" href="#/app/detail-budget/{{data.account}}">
+                <h4 class="border-top">
+                    <i class="icon ion-bookmark"></i>
+                    {{data.keterangan}}
+                </h4>
+                <p style="color:red">
+                Anggaran : <h4 style="margin-top: -20px;">{{ data.anggaran | currency: "Rp. "}}</h4>
+                </p>
+                <p style="color:green">
+                Realisasi : <h4 style="margin-top: -20px;">{{ data.saldo | currency: "Rp. "}}</h4>
+                </p>
+                <p style="color:orange">
+                Sisa Anggaran : <h4 style="margin-top: -20px;">{{ data.anggaran - data.saldo | currency: "Rp. "}}</h4>
+                </p>
+        </div>
+
+    </ion-content>
+    <button id="fab" name="fabContent" class="button button-assertive button-fab button-fab-bottom-right" ng-click="edit()" >
+        Edit
+    </button>
+</ion-view>

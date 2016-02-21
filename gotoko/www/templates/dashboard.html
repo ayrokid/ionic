@@ -1,0 +1,88 @@
+<ion-view view-title="GOTOKO">
+  <ion-content class="padding">
+  	<ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="refresh()">
+    </ion-refresher>
+    <h4 class="border-bottom">
+    <i class="icon ion-stats-bars"></i> Profit
+    </h4>
+    <div class="item item-button-right" ng-init="profit = ((item.rekap.profit - item.last.profit)/item.last.profit ) * 100" >
+        <h2>
+            <strong>{{item.rekap.profit | currency: "Rp. " }}</strong>
+        </h2>
+        <strong ng-if="profit >= 0" class="balanced">{{ profit | number: 2 }} %</strong>
+        <strong ng-if="profit < 0" class="assertive">{{ profit | number: 2 }} %</strong>
+        <p>
+            {{item.last.profit | currency: "Rp. " }}
+        </p>
+        <button ng-if="profit >= 0" style="margin-top:20px;" class="button button-clear button-balanced">
+            <i class="icon ion-arrow-up-c"></i>
+        </button>
+        <button ng-if="profit < 0" style="margin-top:20px;" class="button button-clear button-assertive">
+            <i class="icon ion-arrow-down-c"></i>
+        </button>
+    </div>
+
+    <h4 class="border-top">
+    <i class="icon ion-cash"></i> Cost
+    </h4>
+    <div class="item item-button-right" ng-init="cost = ((item.cost - item.costLast)/item.costLast ) * 100" >
+        <h2>
+            <strong>{{item.cost | currency: "Rp. " }}</strong>
+        </h2>
+        <strong ng-if="cost >= 0" class="balanced">{{ cost | number: 2 }} %</strong>
+        <strong ng-if="cost < 0" class="assertive">{{ cost | number: 2 }} %</strong>
+        <p>
+            {{item.costLast | currency: "Rp. " }}
+        </p>
+        <button ng-if="cost >= 0" style="margin-top:20px;" class="button button-clear button-balanced">
+            <i class="icon ion-arrow-up-c"></i>
+        </button>
+        <button ng-if="cost < 0" style="margin-top:20px;" class="button button-clear button-assertive">
+            <i class="icon ion-arrow-down-c"></i>
+        </button>
+    </div>
+
+    <h4 class="border-top">
+    <i class="icon ion-bag"></i> Sales
+    </h4>
+    <div class="item item-button-right" ng-init="sales = ((item.rekap.sales - item.last.sales)/item.last.sales ) * 100" >
+        <h2>
+            <strong>{{item.rekap.sales | currency: "Rp. " }}</strong>
+        </h2>
+        <strong ng-if="sales >= 0" class="balanced">{{ sales | number: 2 }} %</strong>
+        <strong ng-if="sales < 0" class="assertive">{{ sales | number: 2 }} %</strong>
+        <p>
+            {{item.last.sales | currency: "Rp. " }}
+        </p>
+        <button ng-if="sales >= 0" style="margin-top:20px;" class="button button-clear button-balanced">
+            <i class="icon ion-arrow-up-c"></i>
+        </button>
+        <button ng-if="sales < 0" style="margin-top:20px;" class="button button-clear button-assertive">
+            <i class="icon ion-arrow-down-c"></i>
+        </button>
+    </div>
+
+    <h4 class="border-top border-bottom">
+    <i class="icon ion-closed-captioning"></i> Retur
+    </h4>
+    <div class="item item-button-right" ng-init="retur = ((item.rekap.retur - item.last.retur)/item.last.retur ) * 100" >
+        <h2>
+            <strong>{{item.rekap.retur | currency: "Rp. " }}</strong>
+        </h2>
+        <strong ng-if="retur >= 0" class="balanced">{{ retur | number: 2 }} %</strong>
+        <strong ng-if="retur < 0" class="assertive">{{ retur | number: 2 }} %</strong>
+        <p>
+            {{item.last.retur | currency: "Rp. " }}
+        </p>
+        <button ng-if="retur >= 0" style="margin-top:20px;" class="button button-clear button-balanced">
+            <i class="icon ion-arrow-up-c"></i>
+        </button>
+        <button ng-if="retur < 0" style="margin-top:20px;" class="button button-clear button-assertive">
+            <i class="icon ion-arrow-down-c"></i>
+        </button>
+    </div>
+
+  </ion-content>
+</ion-view>

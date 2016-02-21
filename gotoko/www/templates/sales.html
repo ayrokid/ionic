@@ -1,0 +1,33 @@
+<ion-view view-title="Reporting Sales">
+    <ion-content class="padding">
+        <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="refresh()">
+        </ion-refresher>
+        <h4 class="border-top">
+        <i class="icon ion-stats-bars"></i>
+        Reporting Sales
+        </h4>
+        <div class="card">
+            <div class="item item-body">
+                <highchart config="chartPie" class="Chartcenter"></highchart>
+            </div>
+        </div>
+        <!-- Pie chart-->
+        <h4 class="border-top">
+        <i class="icon ion-bag"></i>
+        Sales
+        </h4>
+        {{ item.sales | currency: "Rp. "}}
+        <h4 class="border-top">
+        <i class="icon ion-calculator"></i>
+        Target
+        </h4>
+        {{ item.target | currency: "Rp. "}}
+        <h4 class="border-top">
+        <i class="icon ion-pie-graph"></i>
+        Realisasi
+        </h4>
+        {{ (item.sales / item.target) * 100 | currency: ""}} %
+    </ion-content>
+</ion-view>
